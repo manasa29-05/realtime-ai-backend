@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WebSocket Test</title>
+</head>
+<body>
+  <h2>WebSocket Test</h2>
+
+  <input id="msg" placeholder="Type message" />
+  <button onclick="sendMsg()">Send</button>
+
+  <pre id="log"></pre>
+
+  <script>
+    const ws = new WebSocket("ws://127.0.0.1:8000/ws/session/test123");
+
+    ws.onmessage = (event) => {
+      document.getElementById("log").textContent += event.data + "\n";
+    };
+
+    function sendMsg() {
+      const msg = document.getElementById("msg").value;
+      ws.send(msg);
+    }
+  </script>
+</body>
+</html>
